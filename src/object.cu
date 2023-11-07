@@ -369,22 +369,49 @@ Starbot::Starbot(
 
     double M_PI = 3.14159265358979323846;
 
-    // body: mass
+    // torso base: mass
     for (int side = 0; side < num_sides; side++) {
-        Vec mass_pos = Vec(
-            center[0] + cos(2.0 * M_PI / num_sides * side),
-            center[1] + sin(2.0 * M_PI / num_sides * side),
-            center[2]);
-        masses.push_back(new Mass(mass_pos));
+        Vec pos = center + Vec(
+            cos(2.0 * M_PI / num_sides * side),
+            sin(2.0 * M_PI / num_sides * side),
+            0);
+        masses.push_back(new Mass(pos));
     }
-    masses.push_back(new Mass(center + Vec(0,0,1)));
 
-    // body: spring
+    // torso bass: spring
     int idx_max = masses.size();
-    int idx_min = masses.size() - num_sides - 1;
+    int idx_min = 0;
     for (int i = idx_min; i < idx_max; i++) {
         for (int j = i + 1; j < idx_max; j++) {
             auto new_spring = new Spring(masses[i], masses[j], k_stiff, 1.0, omega, 1.0, 0.0, 0.0);
+            new_spring->defaultLength();
+            springs.push_back(new_spring);
+        }
+    }
+
+    // legs: mass & springs
+    for (int side = 0; side < num_sides; side++) {
+        Vec pos = masses[side]->pos + Vec(
+            cos(2.0 * M_PI / num_sides * side),
+            sin(2.0 * M_PI / num_sides * side),
+            -1);
+        auto new_mass = new Mass(pos);
+        masses.push_back(new_mass);
+
+        for (int leg_spring = -1; leg_spring <= 1; leg_spring++){
+            auto new_spring = new Spring(masses[(side + leg_spring + num_sides) % num_sides], new_mass, k_stiff, 1.0, omega, 1.0, 0.0, 0.0);
+            new_spring->defaultLength();
+            springs.push_back(new_spring);
+        }
+    }
+    
+    // torso tip: mass & springs
+    {
+        auto new_mass = new Mass(center + Vec(0,0,1));
+        masses.push_back(new_mass);
+
+        for (int side = 0; side < num_sides; side++) {
+            auto new_spring = new Spring(masses[side], new_mass, k_stiff, 1.0, omega, 1.0, 0.0, 0.0);
             new_spring->defaultLength();
             springs.push_back(new_spring);
         }
