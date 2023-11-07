@@ -360,6 +360,35 @@ Beam::Beam(const Vec & center, const Vec & dims, int nx, int ny, int nz) {
 }
 #endif
 
+
+StarfishBot::StarfishBot(
+    const Vec& center, const double size, const int num_sides,
+    const double omega, const double k_stiff, const double k_soft, const std::vector<double> params_abc)
+{
+    _center = center;
+
+    // body: mass
+    for (int side = 0; side < num_sides; side++) {
+        Vec mass_pos = Vec(
+            center[0] + cos(2.0 * M_PI / num_sides * side),
+            center[1] + sin(2.0 * M_PI / num_sides * side),
+            center[2]);
+        masses.push_back(new Mass(mass_pos));
+    }
+    masses.push_back(new Mass(center + Vec(0,0,1)));
+
+    // body: spring
+    int idx_max = masses.size();
+    int idx_min = masses.size() - num_sides - 1;
+    for (int i = idx_min; i < idx_max; i++) {
+        for (int j = i + 1; j < idx_max; j++) {
+            auto new_spring = new Spring(masses[i], masses[j], k_stiff, 1.0, omega, 1.0, 0.0, 0.0);
+            new_spring->defaultLength();
+            springs.push_back(new_spring);
+        }
+    }
+}
+
 // Robot::Robot(const Vec & center, const cppn& encoding, double side_length,  double omega, double k_soft, double k_stiff){
 //     _center = center;
 //     _side_length = side_length;

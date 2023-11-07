@@ -284,6 +284,18 @@ public:
     Vec _center, _dims;
 };
 
+class StarfishBot : public Container {
+public:
+    ~StarfishBot() {};
+
+    StarfishBot(
+        const Vec& center, const double size, const int num_sides,
+        const double omega, const double k_stiff, const double k_soft, const std::vector<double> params_abc);
+    
+    Vec _center;
+};
+
+
 
 // typedef std::vector<std::vector<std::vector<std::vector<int>>>> cppn;
 // class Robot : public Container {
