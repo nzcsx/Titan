@@ -284,11 +284,11 @@ public:
     Vec _center, _dims;
 };
 
-class StarfishBot : public Container {
+class Starbot : public Container {
 public:
-    ~StarfishBot() {};
+    ~Starbot() {};
 
-    StarfishBot(
+    Starbot(
         const Vec& center, const double size, const int num_sides,
         const double omega, const double k_stiff, const double k_soft, const std::vector<double> params_abc);
     

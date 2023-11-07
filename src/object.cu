@@ -361,7 +361,7 @@ Beam::Beam(const Vec & center, const Vec & dims, int nx, int ny, int nz) {
 #endif
 
 
-StarfishBot::StarfishBot(
+Starbot::Starbot(
     const Vec& center, const double size, const int num_sides,
     const double omega, const double k_stiff, const double k_soft, const std::vector<double> params_abc)
 {

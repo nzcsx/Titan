@@ -75,6 +75,9 @@ public:
     Lattice * createLattice(const Vec & center, const Vec & dims, int nx = 10, int ny = 10, int nz = 10);
     // Robot * createRobot(const Vec & center, const cppn& encoding, double side_length,  double omega=1.0, double k_soft=2e3, double k_stiff=2e5);
     Beam * createBeam(const Vec & center, const Vec & dims, int nx = 10, int ny = 10, int nz = 10);
+    Starbot * createStarbot(
+        const Vec& center, const double size, const int num_sides,
+        const double omega, const double k_stiff, const double k_soft, const std::vector<double> params_abc);
     Container * importFromSTL(const std::string & path, double density = 10.0, int num_rays = 5); // density is vertices / volume
 
     // Bulk modifications, only update CPU
