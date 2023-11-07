@@ -15,7 +15,7 @@ set(SOURCE_PATH ${CURRENT_BUILDTREES_DIR}/src/Titan)
 
 vcpkg_from_github(OUT_SOURCE_PATH SOURCE_PATH
         REPO nzcsx/Titan
-        HEAD_REF starfishbot
+        HEAD_REF starbot
 )
 
 find_program(NVCC
