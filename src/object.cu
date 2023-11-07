@@ -365,6 +365,8 @@ StarfishBot::StarfishBot(
     const Vec& center, const double size, const int num_sides,
     const double omega, const double k_stiff, const double k_soft, const std::vector<double> params_abc)
 {
+    ;
+    /*
     _center = center;
 
     // body: mass
@@ -386,7 +388,7 @@ StarfishBot::StarfishBot(
             new_spring->defaultLength();
             springs.push_back(new_spring);
         }
-    }
+    }*/
 }
 
 // Robot::Robot(const Vec & center, const cppn& encoding, double side_length,  double omega, double k_soft, double k_stiff){
