@@ -290,7 +290,7 @@ public:
 
     Starbot(
         const Vec& center, const double size, const int num_sides,
-        const double omega, const double k_stiff, const double k_soft, const std::vector<double> params_abc);
+        const double omega, const double k_stiff, const double k_soft, const std::vector<double> params);
     
     Vec _center;
 };

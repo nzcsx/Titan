@@ -1981,12 +1981,12 @@ Beam * Simulation::createBeam(const Vec & center, const Vec & dims, int nx, int 
 
 Starbot * Simulation::createStarbot(
     const Vec& center, const double size, const int num_sides,
-    const double omega, const double k_stiff, const double k_soft, const std::vector<double> params_abc) {
+    const double omega, const double k_stiff, const double k_soft, const std::vector<double> params) {
     if (ENDED) {
         throw std::runtime_error("The simulation has ended. New objects cannot be created.");
     }
 
-    Starbot * l = new Starbot(center, size, num_sides, omega, k_stiff, k_soft, params_abc);
+    Starbot * l = new Starbot(center, size, num_sides, omega, k_stiff, k_soft, params);
 
     d_masses.reserve(masses.size() + l -> masses.size());
     d_springs.reserve(springs.size() + l -> springs.size());
