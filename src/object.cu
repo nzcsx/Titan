@@ -363,9 +363,18 @@ Beam::Beam(const Vec & center, const Vec & dims, int nx, int ny, int nz) {
 
 Starbot::Starbot(
     const Vec& center, const double size, const int num_sides,
-    const double omega, const double k_stiff, const double k_soft, const double* params)
+    const double omega, const double* params)
 {
     _center = center;
+
+    // mat1: stiff
+    double mat1_k = params[0];
+    double mat1_b = params[1];
+    double mat1_c = params[2];
+    // mat2: soft
+    double mat2_k = params[3];
+    double mat2_b = params[4];
+    double mat2_c = params[5];
 
     double M_PI = 3.14159265358979323846;
 
@@ -383,7 +392,7 @@ Starbot::Starbot(
     int idx_min = 0;
     for (int i = idx_min; i < idx_max; i++) {
         for (int j = i + 1; j < idx_max; j++) {
-            auto new_spring = new Spring(masses[i], masses[j], k_stiff, 1.0, omega, 1.0, 0.0, 0.0);
+            auto new_spring = new Spring(masses[i], masses[j], mat1_k, 1.0, omega, 1.0, mat1_b, mat1_c);
             new_spring->defaultLength();
             springs.push_back(new_spring);
         }
@@ -399,7 +408,7 @@ Starbot::Starbot(
         masses.push_back(new_mass);
 
         for (int leg_spring = -1; leg_spring <= 1; leg_spring++){
-            auto new_spring = new Spring(masses[(side + leg_spring + num_sides) % num_sides], new_mass, k_stiff, 1.0, omega, 1.0, 0.0, 0.0);
+            auto new_spring = new Spring(masses[(side + leg_spring + num_sides) % num_sides], new_mass, mat2_k, 1.0, omega, 1.0, mat2_b, mat2_c);
             new_spring->defaultLength();
             springs.push_back(new_spring);
         }
@@ -411,7 +420,7 @@ Starbot::Starbot(
         masses.push_back(new_mass);
 
         for (int side = 0; side < num_sides; side++) {
-            auto new_spring = new Spring(masses[side], new_mass, k_stiff, 1.0, omega, 1.0, 0.0, 0.0);
+            auto new_spring = new Spring(masses[side], new_mass, mat1_k, 1.0, omega, 1.0, mat1_b, mat1_c);
             new_spring->defaultLength();
             springs.push_back(new_spring);
         }
