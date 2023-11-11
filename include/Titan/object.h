@@ -288,9 +288,7 @@ class Starbot : public Container {
 public:
     ~Starbot() {};
 
-    Starbot(
-        const Vec& center, const double size, const int num_sides,
-        const double omega, const double* params);
+    Starbot(const Vec& center, const double size, const int num_sides, const double* params);
     
     Vec _center;
 };

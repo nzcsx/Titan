@@ -361,20 +361,19 @@ Beam::Beam(const Vec & center, const Vec & dims, int nx, int ny, int nz) {
 #endif
 
 
-Starbot::Starbot(
-    const Vec& center, const double size, const int num_sides,
-    const double omega, const double* params)
+Starbot::Starbot(const Vec& center, const double size, const int num_sides, const double* params)
 {
     _center = center;
-
+    // omega
+    double omega = params[0];
     // mat1: stiff
-    double k1 = params[0];
-    double b1 = params[1];
-    double c1 = params[2];
+    double k1 = params[1];
+    double b1 = params[2];
+    double c1 = params[3];
     // mat2: soft
-    double k2 = params[3];
-    double b2 = params[4];
-    double c2 = params[5];
+    double k2 = params[4];
+    double b2 = params[5];
+    double c2 = params[6];
 
     double M_PI = 3.14159265358979323846;
 
