@@ -392,7 +392,7 @@ Starbot::Starbot(
     int idx_min = 0;
     for (int i = idx_min; i < idx_max; i++) {
         for (int j = i + 1; j < idx_max; j++) {
-            auto new_spring = new Spring(masses[i], masses[j], mat1_k, 1.0, omega, 1.0, mat1_b, mat1_c);
+            auto new_spring = new Spring(masses[i], masses[j], 1E5, 1.0, omega, 1.0, 0.0, 0.0);
             new_spring->defaultLength();
             springs.push_back(new_spring);
         }
@@ -408,7 +408,7 @@ Starbot::Starbot(
         masses.push_back(new_mass);
 
         for (int leg_spring = -1; leg_spring <= 1; leg_spring++){
-            auto new_spring = new Spring(masses[(side + leg_spring + num_sides) % num_sides], new_mass, mat2_k, 1.0, omega, 1.0, mat2_b, mat2_c);
+            auto new_spring = new Spring(masses[(side + leg_spring + num_sides) % num_sides], new_mass, 1E5, 1.0, omega, 1.0, 0.0, 0.0);
             new_spring->defaultLength();
             springs.push_back(new_spring);
         }
@@ -420,7 +420,7 @@ Starbot::Starbot(
         masses.push_back(new_mass);
 
         for (int side = 0; side < num_sides; side++) {
-            auto new_spring = new Spring(masses[side], new_mass, mat1_k, 1.0, omega, 1.0, mat1_b, mat1_c);
+            auto new_spring = new Spring(masses[side], new_mass, 1E5, 1.0, omega, 1.0, 0.0, 0.0);
             new_spring->defaultLength();
             springs.push_back(new_spring);
         }
