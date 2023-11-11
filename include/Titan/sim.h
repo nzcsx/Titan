@@ -77,7 +77,7 @@ public:
     Beam * createBeam(const Vec & center, const Vec & dims, int nx = 10, int ny = 10, int nz = 10);
     Starbot * createStarbot(
         const Vec& center, const double size, const int num_sides,
-        const double omega, const double k_stiff, const double k_soft, const std::vector<std::array<double,4>> params);
+        const double omega, const double k_stiff, const double k_soft, const double* params);
     Container * importFromSTL(const std::string & path, double density = 10.0, int num_rays = 5); // density is vertices / volume
 
     // Bulk modifications, only update CPU

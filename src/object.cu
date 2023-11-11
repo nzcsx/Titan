@@ -363,7 +363,7 @@ Beam::Beam(const Vec & center, const Vec & dims, int nx, int ny, int nz) {
 
 Starbot::Starbot(
     const Vec& center, const double size, const int num_sides,
-    const double omega, const double k_stiff, const double k_soft, const std::vector<std::array<double, 4>> params)
+    const double omega, const double k_stiff, const double k_soft, const double* params)
 {
     _center = center;
 
