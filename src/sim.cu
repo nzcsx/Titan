@@ -106,10 +106,11 @@ void Simulation::reset() {
     this -> constraints.clear();
 
     RUNNING = false;
-    STARTED = false;
+    //STARTED = false; // Don't change STARTED status
     ENDED = false;
     FREED = false;
     GPU_DONE = false;
+    T = 0;
 
     update_constraints = true;
     _global_acc = Vec(0, 0, -9.81);
