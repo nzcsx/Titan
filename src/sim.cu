@@ -128,6 +128,10 @@ void Simulation::reset() {
 #endif
 }
 
+void Simulation::resetTime() {
+    T = 0;
+}
+
 void Simulation::freeGPU() {
     for (Spring * s : springs) {
         if (s -> _left && ! s -> _left -> valid) {

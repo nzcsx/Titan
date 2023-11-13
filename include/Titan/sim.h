@@ -97,6 +97,7 @@ public:
     void resume();
 
     void reset(); // reset the simulation
+    void resetTime(); // set T = 0
     
     void setBreakpoint(double time); // tell the program to stop at a fixed time (doesn't hang).
 
