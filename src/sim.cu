@@ -105,19 +105,14 @@ void Simulation::reset() {
     this -> containers.clear();
     this -> constraints.clear();
 
-    freeGPU();
-    
     RUNNING = false;
-    //STARTED = false; // Don't change STARTED status
+    STARTED = false;
     ENDED = false;
     FREED = false;
     GPU_DONE = false;
-    T = 0;
 
     update_constraints = true;
     _global_acc = Vec(0, 0, -9.81);
-
-    
 
 #ifdef GRAPHICS
     resize_buffers = true;
