@@ -115,6 +115,8 @@ void Simulation::reset() {
     update_constraints = true;
     _global_acc = Vec(0, 0, -9.81);
 
+    freeGPU();
+
 #ifdef GRAPHICS
     resize_buffers = true;
     update_colors = true;
