@@ -44,7 +44,7 @@ if(VCPKG_LIBRARY_LINKAGE STREQUAL "static")
             -DCMAKE_CUDA_COMPILER:FILEPATH=${NVCC}
             -DTITAN_SHARED_BUILD=OFF
             -DTITAN_INSTALL=ON
-            -DGRAPHICS=ON
+            -DGRAPHICS=OFF
             -DCONSTRAINTS=ON
             -DTITAN_ENABLE_TEST=OFF
             
@@ -58,7 +58,7 @@ else()
             -DTITAN_SHARED_BUILD=ON
             -DCMAKE_CUDA_COMPILER:FILEPATH=${NVCC}
             -DTITAN_INSTALL=ON
-            -DGRAPHICS=ON
+            -DGRAPHICS=OFF
             -DCONSTRAINTS=ON
             -DTITAN_ENABLE_TEST=OFF
             -DTITAN_INSTALL=ON
