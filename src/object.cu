@@ -363,7 +363,6 @@ Beam::Beam(const Vec & center, const Vec & dims, int nx, int ny, int nz) {
 
 Starbot::Starbot(const Vec& center, const double size, const int num_sides, const double* params)
 {
-    _center = center;
     // omega
     double omega = params[0];
     // mat1: stiff
@@ -417,6 +416,7 @@ Starbot::Starbot(const Vec& center, const double size, const int num_sides, cons
     {
         auto new_mass = new Mass(center + Vec(0,0,1));
         masses.push_back(new_mass);
+        center_mass = new_mass;
 
         for (int side = 0; side < num_sides; side++) {
             auto new_spring = new Spring(masses[side], new_mass, 1E5, k1, omega, 1.0, b1, c1);

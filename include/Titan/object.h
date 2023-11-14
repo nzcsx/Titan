@@ -290,7 +290,7 @@ public:
 
     Starbot(const Vec& center, const double size, const int num_sides, const double* params);
     
-    Vec _center;
+    Mass* center_mass;
 };
 
 
