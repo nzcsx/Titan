@@ -403,7 +403,6 @@ Starbot::Starbot(const Vec& center, const double size, const int num_sides, cons
             sin(2.0 * M_PI / num_sides * side),
             0);
         auto new_mass = new Mass(pos);
-        std::cout << pos << std::endl;
         masses.push_back(new_mass);
 
         for (int leg_spring = -1; leg_spring <= 1; leg_spring++){
