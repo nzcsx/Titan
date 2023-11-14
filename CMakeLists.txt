@@ -18,6 +18,8 @@ if (TITAN_BUILD_TESTS AND GRAPHICS)
    set(GRAPHICS OFF)
 endif()
 
+set(GRAPHICS OFF)
+
 # Automate the choosing of config
 if (NOT CMAKE_BUILD_TYPE)
     # if binary directory ends with "release", use release mode
