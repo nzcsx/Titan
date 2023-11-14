@@ -381,7 +381,7 @@ Starbot::Starbot(const Vec& center, const double size, const int num_sides, cons
         Vec pos = center + 0.5 * size * Vec(
             cos(2.0 * M_PI / num_sides * side),
             sin(2.0 * M_PI / num_sides * side),
-            1.73);
+            1.0);
         masses.push_back(new Mass(pos));
     }
 
@@ -414,7 +414,7 @@ Starbot::Starbot(const Vec& center, const double size, const int num_sides, cons
     
     // torso tip: mass & springs
     {
-        auto new_mass = new Mass(center + Vec(0,0, 1.73 * size));
+        auto new_mass = new Mass(center + Vec(0,0,size));
         masses.push_back(new_mass);
         center_mass = new_mass;
 
