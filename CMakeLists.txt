@@ -73,6 +73,7 @@ add_library(Titan ${TITAN_SOURCE_FILES} ${TITAN_HEADER_FILES})
 # if enabled, compiles with support for graphics using OpenGL.
 if (GRAPHICS)
     message(STATUS "Enabling support for OpenGL graphics...")
+    target_compile_definitions(Titan PUBLIC GRAPHICS)
 endif()
 
 # if enabled, compiles with support for constraints.
