@@ -428,6 +428,10 @@ Starbot::Starbot(const Vec& center, const double size, const int num_sides, cons
             springs.push_back(new_spring);
         }
     }
+
+    delete[] k;
+    delete[] b;
+    delete[] c;
 }
 
 // Robot::Robot(const Vec & center, const cppn& encoding, double side_length,  double omega, double k_soft, double k_stiff){
