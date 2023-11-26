@@ -458,7 +458,7 @@ Wormbot::Wormbot(const Vec& center, const double size, const int num_sides, cons
         // base: mass
         for (int side = 0; side < num_sides; side++) {
             Vec pos = center + 0.5 * size * Vec(
-                0.0,
+                len * 2,
                 cos(2.0 * M_PI / num_sides * side + ang_offset),
                 sin(2.0 * M_PI / num_sides * side + ang_offset) + 1.0);
             Mass* new_mass = new Mass(pos);
