@@ -293,6 +293,14 @@ public:
     Mass* center_mass;
 };
 
+class Wormbot : public Container {
+public:
+    ~Wormbot() {};
+
+    Wormbot(const Vec& center, const double size, const int num_sides, const int num_len, const double* params);
+    
+    Mass* center_mass;
+};
 
 
 // typedef std::vector<std::vector<std::vector<std::vector<int>>>> cppn;

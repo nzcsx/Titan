@@ -434,6 +434,53 @@ Starbot::Starbot(const Vec& center, const double size, const int num_sides, cons
     delete[] c;
 }
 
+
+Wormbot::Wormbot(const Vec& center, const double size, const int num_sides, const int num_len, const double* params)
+{
+    int num_matrl = num_len + 1;
+    int num_coeff = 3;
+    double M_PI = 3.14159265358979323846;
+    double ang_offset = (2.0 * M_PI / num_sides) / 2;
+
+    // omega
+    double omega = params[0];
+    // params: k, b, c
+    double* k = new double[num_matrl];
+    double* b = new double[num_matrl];
+    double* c = new double[num_matrl];
+    for (int mat = 0; mat < num_matrl; mat++) {
+        k[mat] = params[1 + mat * num_coeff];
+        b[mat] = params[2 + mat * num_coeff];
+        c[mat] = params[3 + mat * num_coeff];
+    }
+
+    // torso base: mass
+    for (int side = 0; side < num_sides; side++) {
+        Vec pos = center + 0.5 * size * Vec(
+            0.0,
+            cos(2.0 * M_PI / num_sides * side + ang_offset),
+            sin(2.0 * M_PI / num_sides * side + ang_offset) + 1.0);
+        masses.push_back(new Mass(pos));
+    }
+
+    // torso base: spring
+    int idx_max = masses.size();
+    int idx_min = 0;
+    for (int i = idx_min; i < idx_max; i++) {
+        for (int j = i + 1; j < idx_max; j++) {
+            auto new_spring = new Spring(masses[i], masses[j], k[0], 1.0, omega, 1.0, b[0], c[0]);
+            new_spring->defaultLength();
+            springs.push_back(new_spring);
+        }
+    }
+
+
+    delete[] k;
+    delete[] b;
+    delete[] c;
+}
+
+
 // Robot::Robot(const Vec & center, const cppn& encoding, double side_length,  double omega, double k_soft, double k_stiff){
 //     _center = center;
 //     _side_length = side_length;

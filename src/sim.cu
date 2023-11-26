@@ -2010,6 +2010,29 @@ Starbot * Simulation::createStarbot(const Vec& center, const double size, const 
     return l;
 }
 
+Wormbot * Simulation::createWormbot(const Vec& center, const double size, const int num_sides, const int num_len, const double* params) {
+    if (ENDED) {
+        throw std::runtime_error("The simulation has ended. New objects cannot be created.");
+    }
+
+    Wormbot * l = new Wormbot(center, size,  num_sides, num_len, params);
+
+    d_masses.reserve(masses.size() + l -> masses.size());
+    d_springs.reserve(springs.size() + l -> springs.size());
+
+    for (Mass * m : l -> masses) {
+        createMass(m);
+    }
+
+    for (Spring * s : l -> springs) {
+        createSpring(s);
+    }
+
+    containers.push_back(l);
+
+    return l;
+}
+
 // Robot * Simulation::createRobot(const Vec & center, const cppn& encoding, double side_length,  double omega, double k_soft, double k_stiff){
   
 //     if (ENDED) {
