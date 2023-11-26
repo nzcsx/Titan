@@ -482,6 +482,13 @@ Wormbot::Wormbot(const Vec& center, const double size, const int num_sides, cons
         // connector: spring
         if (len > 0){
             for (int side = 0; side < num_sides; side++) {
+                auto new_spring = new Spring(
+                    masses[(len - 1) * num_sides +  side], 
+                    masses[ len      * num_sides +  side], 
+                    k[0], 1.0, omega, 1.0, b[0], c[0]);
+                new_spring->defaultLength();
+                springs.push_back(new_spring);
+                /*
                 for (int leg_spring = -1; leg_spring <= 1; leg_spring++){
                     auto new_spring = new Spring(
                         masses[(len - 1) * num_sides + (side + leg_spring + num_sides) % num_sides], 
@@ -489,7 +496,7 @@ Wormbot::Wormbot(const Vec& center, const double size, const int num_sides, cons
                         k[0], 1.0, omega, 1.0, b[0], c[0]);
                     new_spring->defaultLength();
                     springs.push_back(new_spring);
-                }
+                }*/
             }
         }
     }
