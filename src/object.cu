@@ -479,6 +479,7 @@ Wormbot::Wormbot(const Vec& center, const double size, const int num_sides, cons
             }
         }
 
+        /*
         // connector: spring
         if (len > 0){
             for (int side = 0; side < num_sides; side++) {
@@ -487,6 +488,7 @@ Wormbot::Wormbot(const Vec& center, const double size, const int num_sides, cons
                 springs.push_back(new_spring);
             }
         }
+        */
     }
 
 
