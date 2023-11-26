@@ -458,7 +458,7 @@ Wormbot::Wormbot(const Vec& center, const double size, const int num_sides, cons
         // base: mass
         for (int side = 0; side < num_sides; side++) {
             Vec pos = center + 0.5 * size * Vec(
-                len * 2,
+                len,
                 cos(2.0 * M_PI / num_sides * side + ang_offset),
                 sin(2.0 * M_PI / num_sides * side + ang_offset) + 1.0);
             Mass* new_mass = new Mass(pos);
@@ -486,7 +486,7 @@ Wormbot::Wormbot(const Vec& center, const double size, const int num_sides, cons
                     auto new_spring = new Spring(
                         masses[(len - 1) * num_sides + (side + leg_spring + num_sides) % num_sides], 
                         masses[ len      * num_sides +  side], 
-                        k[0], 1.0, omega, 1.0, b[0], c[0]);
+                        k[len-1], 1.0, omega, 1.0, b[len-1], c[len-1]);
                     new_spring->defaultLength();
                     springs.push_back(new_spring);
                 }
