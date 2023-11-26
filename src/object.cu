@@ -454,7 +454,7 @@ Wormbot::Wormbot(const Vec& center, const double size, const int num_sides, cons
         c[mat] = params[3 + mat * num_coeff];
     }
 
-    //for (int len = 0; len <= num_len; len++){
+    for (int len = 0; len <= num_len; len++){
         // base: mass
         for (int side = 0; side < num_sides; side++) {
             Vec pos = center + 0.5 * size * Vec(
@@ -464,13 +464,13 @@ Wormbot::Wormbot(const Vec& center, const double size, const int num_sides, cons
             Mass* new_mass = new Mass(pos);
             masses.push_back(new_mass);
             
-            if (side == 0 /*&& len == 0*/)
+            if (side == 0 && len == 0)
                 center_mass = new_mass;
         }
 
         // base: spring
         int idx_max = masses.size();
-        int idx_min = 0;
+        int idx_min = idx_max - num_sides;
         for (int i = idx_min; i < idx_max; i++) {
             for (int j = i + 1; j < idx_max; j++) {
                 auto new_spring = new Spring(masses[i], masses[j], k[0], 1.0, omega, 1.0, b[0], c[0]);
@@ -478,16 +478,21 @@ Wormbot::Wormbot(const Vec& center, const double size, const int num_sides, cons
                 springs.push_back(new_spring);
             }
         }
-/*
+
         // connector: spring
         if (len > 0){
             for (int side = 0; side < num_sides; side++) {
-                auto new_spring = new Spring(masses[(len - 1) * num_sides + side], masses[len * num_sides + side], k[0], 1.0, omega, 1.0, b[0], c[0]);
-                new_spring->defaultLength();
-                springs.push_back(new_spring);
+                for (int leg_spring = -1; leg_spring <= 1; leg_spring++){
+                    auto new_spring = new Spring(
+                        masses[(len - 1) * num_sides + (side + leg_spring + num_sides) % num_sides], 
+                        masses[ len      * num_sides +  side], 
+                        k[0], 1.0, omega, 1.0, b[0], c[0]);
+                    new_spring->defaultLength();
+                    springs.push_back(new_spring);
+                }
             }
         }
-    }*/
+    }
 
 
     delete[] k;
