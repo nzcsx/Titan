@@ -474,7 +474,7 @@ Wormbot::Wormbot(const Vec& center, const double size, const int num_sides, cons
             int idx_min = idx_max - num_sides;
             for (int i = idx_min; i < idx_max; i++) {
                 for (int j = i + 1; j < idx_max; j++) {
-                    auto new_spring = new Spring(masses[i], masses[j], k[0], 1.0, omega, 1.0, b[0], c[0]);
+                    auto new_spring = new Spring(masses[i], masses[j], k[len+1], 1.0, omega, 1.0, b[len+1], c[len+1]);
                     new_spring->defaultLength();
                     springs.push_back(new_spring);
                 }
