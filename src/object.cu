@@ -486,7 +486,7 @@ Wormbot::Wormbot(const Vec& center, const double size, const int num_sides, cons
                     auto new_spring = new Spring(
                         masses[len * num_sides + (side + leg_spring + num_sides) % num_sides], 
                         masses[len * num_sides +  side], 
-                        k[len+1], 1.0, omega, 1.0, b[len], c[len]);
+                        k[len], 1.0, omega, 1.0, b[len], c[len]);
                     new_spring->defaultLength();
                     springs.push_back(new_spring);
                 }
