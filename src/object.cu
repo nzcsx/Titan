@@ -366,7 +366,7 @@ Starbot::Starbot(const Vec& center, const double size, const int num_sides, cons
     int num_matrl = num_sides + 1;
     int num_coeff = 3;
     double M_PI = 3.14159265358979323846;
-    double ang_offset = (2.0 * M_PI / num_sides) / 2;
+    double ang_offset = 0; (2.0 * M_PI / num_sides) / 2;
 
     // omega
     double omega = params[0];
